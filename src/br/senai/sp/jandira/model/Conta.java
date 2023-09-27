@@ -159,4 +159,23 @@ public class Conta {
         }
 
     }
+
+    public void alterarSenha() {
+        String confirmNewPassword;
+
+        System.out.print("Digite uma nova senha: ");
+        String newPassword = scanner.nextLine();
+        do {
+            System.out.print("Confirme a senha: ");
+            confirmNewPassword = scanner.nextLine();
+
+            if (!newPassword.equals(confirmNewPassword)) {
+                System.out.println("As senhas não coincidem! Verifique novamente.");
+            }
+
+        } while (!newPassword.equals(confirmNewPassword));
+
+        setPassword(newPassword);
+        System.out.println("Senha alterada com sucesso!");
+    }
 }

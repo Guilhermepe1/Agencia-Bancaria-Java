@@ -59,7 +59,8 @@ public class Menu {
             System.out.println("/ 2- Realizar saque                  /");
             System.out.println("/ 3- Realizar depósito               /");
             System.out.println("/ 4- Realizar tranferência           /");
-            System.out.println("/ 5- Encerrar sessão                 /");
+            System.out.println("/ 5- Alterar senha");
+            System.out.println("/ 6- Encerrar sessão                 /");
             System.out.println("/**************----------************/");
 
             int optionUser = scanner.nextInt();
@@ -90,6 +91,10 @@ public class Menu {
                     promoverIdeias();
                     break;
                 case 5:
+                    conta.alterarSenha();
+                    promoverIdeias();
+                    break;
+                case 6:
                     continuarMenu = false;
                     break;
                 default:

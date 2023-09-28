@@ -12,7 +12,7 @@ public class Cliente {
     List<Cliente> listCliente = new ArrayList<>();
     Scanner scanner = new Scanner(System.in);
 
-    public void cadastrarCliente() {
+    public long cadastrarCliente() {
         System.out.println("/-------    Cadastrar Cliente --------/");
         System.out.print("Informe o nome: ");
         nome = scanner.nextLine();
@@ -24,6 +24,8 @@ public class Cliente {
         telefone = scanner.nextLong();
         scanner.nextLine();
         System.out.println("/-------------------------------------/");
+
+        return getCpf();
     }
 
     public String getNome() {

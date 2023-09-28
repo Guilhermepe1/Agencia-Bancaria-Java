@@ -24,8 +24,8 @@ public class Login {
         return null;
     }
 
-    public Conta validarLogin(long cpfUser, String passwordUser, Cliente userCliente, Conta referenciaConta) {
-        Cliente dadosCliente = userCliente.pesquisarCliente(cpfUser);
+    public Conta validarLogin(long cpfUser, String passwordUser, Cliente referenciaCliente, Conta referenciaConta) {
+        Cliente dadosCliente = referenciaCliente.pesquisarCliente(cpfUser);
         if (dadosCliente != null) {
             Conta contaCliente = referenciaConta.pesquisarConta(dadosCliente);
             String password = contaCliente.getPassword();

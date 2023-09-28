@@ -39,7 +39,7 @@ public class Menu {
                     }
                     break;
                 case 2:
-                    referenciaConta.criarConta(referenciaConta, referenciaCliente);
+                    referenciaConta.criarConta(referenciaCliente);
                     break;
                 case 3:
                     exit = true;

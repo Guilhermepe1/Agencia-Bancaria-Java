@@ -6,7 +6,8 @@ import java.util.Scanner;
 
 public class Conta {
     private int numeroConta;
-    private String agencia, password, confirmPassword;
+    private String agencia = "3606-XX";
+    String password, confirmPassword;
     private double saldo = 0;
     private Cliente cliente;
 
@@ -15,13 +16,9 @@ public class Conta {
     Scanner scanner = new Scanner(System.in);
 
 
-    public void cadastrarConta(Cliente cliente) {
-        System.out.println("/-------    Cadastrar Conta --------/");
-        System.out.print("Informe o número da conta: ");
-        numeroConta = scanner.nextInt();
-        scanner.nextLine();
-        System.out.print("Informe a agência: ");
-        agencia = scanner.nextLine();
+    public void gerarConta(Cliente cliente) {
+        System.out.println("/-------    Gerando Conta --------/");
+        numeroConta = (int) (Math.random()*10000);
         System.out.print("Informe uma senha: ");
         password = scanner.nextLine();
         do {
@@ -35,7 +32,6 @@ public class Conta {
         System.out.println("/-----------------------------------/");
 
         this.cliente = cliente;
-
     }
 
     public void realizarSaque(double valor) {
@@ -88,22 +84,18 @@ public class Conta {
         this.password = password;
     }
 
-    public void criarConta(Conta referenciaConta, Cliente referenciaCliente) {
+    public void criarConta(Cliente referenciaCliente) {
 
         Cliente cliente = new Cliente();
-        cliente.cadastrarCliente();
+        long cpfCliente = cliente.cadastrarCliente();
         referenciaCliente.adicionarList(cliente);
 
         Conta conta = new Conta();
 
-        System.out.print("Informe o CPF do cliente: ");
-        Long cpfCliente = scanner.nextLong();
-        scanner.nextLine();
-
         Cliente clienteConta = referenciaCliente.pesquisarCliente(cpfCliente);
 
-        conta.cadastrarConta(clienteConta);
-        referenciaConta.adicionarList(conta);
+        conta.gerarConta(clienteConta);
+        adicionarList(conta);
     }
 
     public void exibirPerfil(Conta conta) {
@@ -112,7 +104,6 @@ public class Conta {
         System.out.println("| Olá "+conta.cliente.getNome()+"!");
         System.out.println("| Agência: "+conta.getAgencia());
         System.out.println("| Conta: "+conta.getNumeroConta());
-
 
     }
 
@@ -142,9 +133,13 @@ public class Conta {
             if (contaCliente.saldo >= valor) {
                 System.out.println("Transferência realizada com sucesso!");
                 System.out.println("---------> Comprovante de transferência");
+                System.out.println("| - Agência: "+contaCliente.getAgencia());
+                System.out.println("| - Conta: "+contaCliente.getNumeroConta());
                 System.out.println("| - Remetente: "+contaCliente.cliente.getNome());
                 System.out.println("| - CPF do remetente: "+contaCliente.cliente.getCpf());
                 System.out.println("| - Valor: R$"+valor);
+                System.out.println("| - Agência: "+contaDestinatario.getAgencia());
+                System.out.println("| - Conta: "+contaDestinatario.getNumeroConta());
                 System.out.println("| - Destinatário: "+contaDestinatario.cliente.getNome());
                 System.out.println("| - CPF do destinatário: "+contaDestinatario.cliente.getCpf());
                 System.out.println("-----------------------------------------------");
@@ -157,7 +152,6 @@ public class Conta {
         } else {
             System.out.println("CPF destinatário não encontrado!");
         }
-
     }
 
     public void alterarSenha() {
